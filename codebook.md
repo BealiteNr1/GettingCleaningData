@@ -17,7 +17,18 @@ That´s what we were asked to do with the data mentioned below:
 Data stemming from site http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones, 
 there you can find detailed information on data set.
 Course project data [getdata_projectfiles_UCI HAR Dataset.zip] had been downloaded from Coursera site.
-
+Codefile [run_analysis.R] assumes zip-file extracted in in working directory (i.e. data in subdirectories \test and \train)
+Mass data in files [X_train.txt], [X_test.txt] has 561(!) columns; column names in [features.txt]
+In addition there is one more data column in files [subject_train.txt] and [subject_test.txt]
+There is one (small) file [activity_labels.txt] with names related to activity numbers.
 
 ###Description of work done
-
+* read [features.txt] into data frame and analyze column structure
+* "disable" columns other than needed (i.e. only with relevance to "mean and standard deviation"); thus, amount of input will be significantly smaller (see data description on original site for names of variables)
+* read test data into data frames and add subject-column with cbind
+* read/process train data analogously
+* concatenate data frames with with rbind
+* aggregate data on activity numer and subject number computing the mean (average) of measure variables
+* set column name for activity number in order to be able to match to activity name
+* read activity labels and match to activity number with merge-function
+* export data frame with write table-function
